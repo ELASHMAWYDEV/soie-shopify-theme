@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
@@ -8,32 +17,39 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
-            "text_alignment": "center",
-            "color_scheme": "scheme-1",
-            "link": ""
+            "announcement_text": "Free Shipping on Orders Over $150",
+            "cta_text": "Shop Now",
+            "cta_link": ""
           }
         }
       },
       "block_order": [
         "announcement-bar-0"
-      ]
+      ],
+      "settings": {
+        "background_color": "#B8A69A",
+        "text_color": "#FFFFFF",
+        "cta_color": "#FFFFFF",
+        "nav_color": "#FFFFFF",
+        "autoplay": true,
+        "slide_interval": 5
+      }
     },
     "header": {
       "type": "header",
       "settings": {
-        "color_scheme": "scheme-1",
-        "logo_position": "middle-left",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "mobile_logo_position": "center",
-        "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "transparent_header": false,
+        "header_height": 80,
+        "logo_text": "SOÏE",
+        "logo_width": 120,
+        "logo_height": 50,
+        "background_color": "#FFFFFF",
+        "text_color": "#FFFFFF",
+        "text_color_inverse": "#000000",
+        "show_search": true,
+        "show_account": true,
+        "show_cart": true
       }
     }
   },

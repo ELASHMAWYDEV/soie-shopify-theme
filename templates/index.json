@@ -1,100 +1,126 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero-split",
       "settings": {
-        "title": "Ethereal New Prints",
-        "subtitle": "Inspired by nature",
+        "title": "",
+        "subtitle": "",
         "button_text": "Shop Printed Modal Hijabs",
         "button_link": "/collections/printed-hijabs",
-        "text_color": "#FFFFFF",
-        "button_background": "#FFFFFF",
-        "button_text_color": "#000000"
+        "image": "shopify://shop_images/132592F3-DA38-4C1A-9BD6-D40B0664A647.jpg",
+        "image_right": "shopify://shop_images/JQ7A9872.jpg",
+        "video_url": "",
+        "text_color": "#ffffff",
+        "button_text_color": "#ffffff",
+        "font_size": "2rem"
       }
     },
     "marquee": {
       "type": "marquee-text",
       "settings": {
-        "marquee_text": "embrace the tranquil serenity of nature",
-        "background_color": "#B8A69A",
-        "text_color": "#FFFFFF",
-        "animation_duration": 30
+        "marquee_text": "Inspired By You",
+        "background_color": "#b8a69a",
+        "text_color": "#ffffff",
+        "animation_duration": 10,
+        "font_size": "1.5rem"
       }
     },
-    "collection-grid": {
-      "type": "collection-grid",
-      "blocks": {
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "title": "Golden Sands",
-            "subtitle": "Discover our latest collection"
-          }
-        },
-        "collection-2": {
-          "type": "collection",
-          "settings": {
-            "title": "Dune Sands",
-            "subtitle": "Explore timeless pieces"
-          }
-        },
-        "collection-3": {
-          "type": "collection",
-          "settings": {
-            "title": "Twilight",
-            "subtitle": "Evening elegance"
-          }
-        },
-        "collection-4": {
-          "type": "collection",
-          "settings": {
-            "title": "Earth Woven",
-            "subtitle": "Natural beauty"
-          }
-        }
-      },
-      "block_order": ["collection-1", "collection-2", "collection-3", "collection-4"]
-    },
-    "category-links": {
-      "type": "category-links",
-      "blocks": {
-        "category-1": {
-          "type": "category",
-          "settings": {
-            "title": "Dresses",
-            "subtitle": "SHOP DRESSES",
-            "link": "/collections/dresses"
-          }
-        },
-        "category-2": {
-          "type": "category",
-          "settings": {
-            "title": "Hijabs",
-            "subtitle": "SHOP HIJABS",
-            "link": "/collections/hijabs"
-          }
-        },
-        "category-3": {
-          "type": "category",
-          "settings": {
-            "title": "Co-Ords",
-            "subtitle": "SHOP CO-ORDS",
-            "link": "/collections/co-ords"
-          }
-        }
-      },
-      "block_order": ["category-1", "category-2", "category-3"]
+    "featured_products_Cnp9bi": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Featured Colors",
+        "collection": "modal-hijab",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     },
     "as-seen-on": {
       "type": "as-seen-on",
       "blocks": {
-        "social-1": { "type": "image" },
-        "social-2": { "type": "image" },
-        "social-3": { "type": "image" },
-        "social-4": { "type": "image" },
-        "social-5": { "type": "image" }
+        "social-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0882.jpg",
+            "caption": ""
+          }
+        },
+        "social-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0886.jpg",
+            "caption": ""
+          }
+        },
+        "social-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0877_2.jpg",
+            "caption": ""
+          }
+        },
+        "social-4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0872.jpg",
+            "caption": ""
+          }
+        },
+        "social-5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0888.jpg",
+            "caption": ""
+          }
+        },
+        "image_t4j4b8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0881.jpg",
+            "caption": ""
+          }
+        },
+        "image_jUKfrq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0887.jpg",
+            "caption": ""
+          }
+        },
+        "image_JCMC3D": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0885.jpg",
+            "caption": ""
+          }
+        },
+        "image_Xfn3Bb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0875.jpg",
+            "caption": ""
+          }
+        }
       },
-      "block_order": ["social-1", "social-2", "social-3", "social-4", "social-5"],
+      "block_order": [
+        "social-1",
+        "social-2",
+        "social-3",
+        "social-4",
+        "social-5",
+        "image_t4j4b8",
+        "image_jUKfrq",
+        "image_JCMC3D",
+        "image_Xfn3Bb"
+      ],
       "settings": {
         "heading": "As Seen On",
         "autoplay": true
@@ -107,29 +133,45 @@
           "type": "column",
           "settings": {
             "title": "Our Commitment",
-            "text": "<p>Share your brand's unique story and values with your customers.</p>"
+            "text": "<p>Share your brand's unique story and values with your customers.</p>",
+            "button_text": "",
+            "button_link": ""
           }
         },
         "column-2": {
           "type": "column",
           "settings": {
             "title": "Our Mission",
-            "text": "<p>Highlight what makes your brand special and why customers should choose you.</p>"
+            "text": "<p>Highlight what makes your brand special and why customers should choose you.</p>",
+            "button_text": "",
+            "button_link": ""
           }
         },
         "column-3": {
           "type": "column",
           "settings": {
             "title": "For the Community",
-            "text": "<p>Describe how your brand contributes to and supports your community.</p>"
+            "text": "<p>Describe how your brand contributes to and supports your community.</p>",
+            "button_text": "",
+            "button_link": ""
           }
         }
       },
-      "block_order": ["column-1", "column-2", "column-3"],
+      "block_order": [
+        "column-1",
+        "column-2",
+        "column-3"
+      ],
       "settings": {
         "heading": "Who We Are"
       }
     }
   },
-  "order": ["hero", "marquee", "collection-grid", "category-links", "as-seen-on", "who-we-are"]
+  "order": [
+    "hero",
+    "marquee",
+    "featured_products_Cnp9bi",
+    "as-seen-on",
+    "who-we-are"
+  ]
 }

@@ -1,0 +1,230 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    .featured-products {
+      background-color: var(--color-background);
+    }
+
+    .featured-products__header {
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 60px;
+  }
+
+  .featured-products__title {
+      margin: 0;
+      font-family: var(--font-montserrat);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-light);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+    }
+
+    .featured-products__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .featured-products__item {
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .featured-products__item:hover {
+      transform: translateY(-8px);
+    }
+
+    .featured-products__image-wrapper {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 2/3;
+      margin-bottom: 20px;
+    }
+
+    .featured-products__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .featured-products__item:hover .featured-products__image {
+      transform: scale(1.05);
+    }
+
+    .featured-products__content {
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .featured-products__product-title {
+      margin: 0 0 8px;
+      font-family: var(--font-montserrat);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-medium);
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-text);
+    }
+
+    .featured-products__product-price {
+      font-family: var(--font-montserrat);
+      font-size: var(--font-size-base);
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    .featured-products__link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .featured-products__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .featured-products__item:hover .featured-products__overlay {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 989px) {
+      .featured-products__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .featured-products__header {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media screen and (max-width: 749px) {
+      .featured-products__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-products__title {
+        font-size: var(--font-size-lg);
+      }
+    }
+{%- endstyle -%}
+
+<div class="featured-products section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="featured-products__header">
+        <h2 class="featured-products__title">
+          {{ section.settings.title | escape }}
+        </h2>
+      </div>
+    {%- endif -%}
+
+    <ul class="featured-products__grid">
+      {%- for product in section.settings.collection.products limit: 3 -%}
+        <li class="featured-products__item">
+          <a href="{{ product.url }}" class="featured-products__link">
+            <div class="featured-products__image-wrapper">
+              {%- if product.featured_image -%}
+                <img
+                  srcset="
+                    {% if product.featured_image.width >= 165 %}{{ product.featured_image | image_url: width: 165 }} 165w,{% endif %}
+                    {% if product.featured_image.width >= 360 %}{{ product.featured_image | image_url: width: 360 }} 360w,{% endif %}
+                    {% if product.featured_image.width >= 533 %}{{ product.featured_image | image_url: width: 533 }} 533w,{% endif %}
+                    {% if product.featured_image.width >= 720 %}{{ product.featured_image | image_url: width: 720 }} 720w,{% endif %}
+                    {% if product.featured_image.width >= 940 %}{{ product.featured_image | image_url: width: 940 }} 940w,{% endif %}
+                    {% if product.featured_image.width >= 1066 %}{{ product.featured_image | image_url: width: 1066 }} 1066w{% endif %}
+                  "
+                  src="{{ product.featured_image | image_url: width: 533 }}"
+                  sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                  alt="{{ product.featured_image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ product.featured_image.width }}"
+                  height="{{ product.featured_image.height }}"
+                  class="featured-products__image"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'featured-products__image placeholder' }}
+              {%- endif -%}
+              <div class="featured-products__overlay"></div>
+            </div>
+            <div class="featured-products__content">
+              <h3 class="featured-products__product-title">{{ product.title }}</h3>
+              <p class="featured-products__product-price">
+                {%- if product.price_varies -%}
+                  From {{ product.price_min | money }}
+                {%- else -%}
+                  {{ product.price | money }}
+                {%- endif -%}
+              </p>
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured Collection",
+      "label": "Title"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

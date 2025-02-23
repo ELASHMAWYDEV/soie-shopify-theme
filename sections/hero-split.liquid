@@ -64,11 +64,9 @@
 <style>
   .hero-split {
     position: relative;
-    height: calc(60vh - var(--header-height));
+    height: calc(80vh - var(--header-height));
     min-height: 400px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
   }
 
   .hero-content {
@@ -112,20 +110,31 @@
 
   .hero-button {
     display: inline-block;
-    padding: 16px 32px;
-    background-color: {{ section.settings.button_background }};
     color: {{ section.settings.button_text_color }};
     text-decoration: none;
-    font-family: var(--font-montserrat);
-    font-size: var(--font-size-base);
+    font-family: var(--font-americana);
+    font-size: {{ section.settings.font_size }};
     font-weight: var(--font-medium);
     letter-spacing: var(--tracking-wide);
     border-radius: 4px;
-    transition: opacity 0.3s ease;
+    position: relative;
   }
 
-  .hero-button:hover {
-    opacity: 0.9;
+  .hero-button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0px;
+    right: 0;
+    background-color: {{ section.settings.button_text_color }};
+    transform: scaleX(0.3);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+  }
+
+  .hero-button:hover::after {
+    transform: scaleX(1);
   }
 
   .hero-media {
@@ -264,15 +273,15 @@
     },
     {
       "type": "color",
-      "id": "button_background",
-      "label": "Button background",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
       "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "font_size",
+      "label": "Font size",
+      "default": "2rem"
     }
   ],
   "presets": [

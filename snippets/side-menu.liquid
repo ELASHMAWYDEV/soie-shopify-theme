@@ -1,3 +1,10 @@
+{%- comment -%}
+  Renders a side menu with dynamic navigation from Shopify.
+
+  Usage:
+  {% render 'side-menu', menu: section.settings.menu %}
+{%- endcomment -%}
+
 <div class="side-menu" data-side-menu>
   <div class="side-menu-overlay" data-side-menu-overlay></div>
   <div class="side-menu-container">
@@ -11,67 +18,41 @@
 
     <div class="side-menu-content">
       <nav class="side-menu-nav">
-        <a href="/collections/best-sellers" class="menu-link">Best Sellers</a>
-        <a href="/collections/trending" class="menu-link">Trending Looks</a>
-
-        <div class="menu-section">
-          <button class="menu-section-toggle" aria-expanded="false">
-            <span>Hijabs</span>
-            <svg class="icon-plus" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-              <path d="M8 3v10M3 8h10" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-          <div class="menu-section-content">
-            <a href="/collections/modal-hijabs" class="menu-sublink">Modal Hijabs</a>
-            <a href="/collections/printed-hijabs" class="menu-sublink">Printed Hijabs</a>
-            <a href="/collections/premium-hijabs" class="menu-sublink">Premium Hijabs</a>
-          </div>
-        </div>
-
-        <div class="menu-section">
-          <button class="menu-section-toggle" aria-expanded="false">
-            <span>Apparel</span>
-            <svg class="icon-plus" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-              <path d="M8 3v10M3 8h10" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-          <div class="menu-section-content">
-            <a href="/collections/tops" class="menu-sublink">Tops</a>
-            <a href="/collections/bottoms" class="menu-sublink">Bottoms</a>
-            <a href="/collections/outerwear" class="menu-sublink">Outerwear</a>
-          </div>
-        </div>
-
-        <div class="menu-section">
-          <button class="menu-section-toggle" aria-expanded="false">
-            <span>Dresses</span>
-            <svg class="icon-plus" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-              <path d="M8 3v10M3 8h10" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-          <div class="menu-section-content">
-            <a href="/collections/maxi-dresses" class="menu-sublink">Maxi Dresses</a>
-            <a href="/collections/midi-dresses" class="menu-sublink">Midi Dresses</a>
-            <a href="/collections/abayas" class="menu-sublink">Abayas</a>
-          </div>
-        </div>
-
-        <div class="menu-section">
-          <button class="menu-section-toggle" aria-expanded="false">
-            <span>Accessories</span>
-            <svg class="icon-plus" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-              <path d="M8 3v10M3 8h10" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-          <div class="menu-section-content">
-            <a href="/collections/pins" class="menu-sublink">Pins</a>
-            <a href="/collections/caps" class="menu-sublink">Caps</a>
-            <a href="/collections/jewelry" class="menu-sublink">Jewelry</a>
-          </div>
-        </div>
-
-        <a href="/collections/gifts-sets" class="menu-link">Gifts & Sets</a>
-        <a href="/collections/clearance" class="menu-link">Clearance</a>
+        {%- for link in menu.links -%}
+          {%- if link.links != blank -%}
+            <div class="menu-section">
+              <button class="menu-section-toggle" aria-expanded="false">
+                <span>{{ link.title }}</span>
+                <svg class="icon-plus" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                  <path d="M8 3v10M3 8h10" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <div class="menu-section-content">
+                {%- for childlink in link.links -%}
+                  <a
+                    href="{{ childlink.url }}"
+                    class="menu-sublink"
+                    {% if childlink.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    {{ childlink.title }}
+                  </a>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- else -%}
+            <a
+              href="{{ link.url }}"
+              class="menu-link"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{ link.title }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
       </nav>
     </div>
 
@@ -93,6 +74,36 @@
   :root {
     --menu-transition-duration: {{ settings.menu_transition_duration | default: 0.3 }}s;
     --menu-transition-timing: {{ settings.menu_transition_timing | default: 'cubic-bezier(0.4, 0, 0.2, 1)' }};
+  }
+
+  /* Add styles for the main content when menu is open */
+  body.menu-open main,
+  body.menu-open .header-container,
+  body.menu-open #shopify-section-announcement-bar {
+    filter: blur(4px);
+    transition: filter var(--menu-transition-duration) var(--menu-transition-timing);
+  }
+
+  /* Overlay for the main content */
+  .page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--menu-transition-duration) var(--menu-transition-timing),
+                visibility var(--menu-transition-duration) var(--menu-transition-timing);
+    z-index: 998;
+    pointer-events: none;
+  }
+
+  body.menu-open .page-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .side-menu {
@@ -118,8 +129,10 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     transition: opacity var(--menu-transition-duration) var(--menu-transition-timing);
+    z-index: 999;
   }
 
   .side-menu.active .side-menu-overlay {
@@ -137,7 +150,7 @@
     transition: transform var(--menu-transition-duration) var(--menu-transition-timing);
     display: flex;
     flex-direction: column;
-    z-index: 1;
+    z-index: 1000;
   }
 
   .side-menu.active .side-menu-container {
@@ -307,6 +320,11 @@
       this.toggleButtons = document.querySelectorAll('.mobile-nav-toggle');
       this.sectionToggles = document.querySelectorAll('.menu-section-toggle');
 
+      // Create and append page overlay
+      this.pageOverlay = document.createElement('div');
+      this.pageOverlay.className = 'page-overlay';
+      document.body.appendChild(this.pageOverlay);
+
       this.init();
     }
 
@@ -316,7 +334,7 @@
       });
 
       this.closeButton.addEventListener('click', () => this.close());
-      this.overlay.addEventListener('click', () => this.close());
+      this.pageOverlay.addEventListener('click', () => this.close());
 
       // Handle clicks outside the menu
       document.addEventListener('click', (e) => {
@@ -339,11 +357,13 @@
 
     open() {
       this.menu.classList.add('active');
+      document.body.classList.add('menu-open');
       document.body.style.overflow = 'hidden';
     }
 
     close() {
       this.menu.classList.remove('active');
+      document.body.classList.remove('menu-open');
       document.body.style.overflow = '';
     }
   }

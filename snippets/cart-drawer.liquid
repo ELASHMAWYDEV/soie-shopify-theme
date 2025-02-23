@@ -12,6 +12,14 @@
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <style>
+  /* Add styles for the main content when cart is open */
+  body.cart-open main,
+  body.cart-open .header-container,
+  body.cart-open #shopify-section-announcement-bar {
+    filter: blur(4px);
+    transition: filter var(--menu-transition-duration) var(--menu-transition-timing);
+  }
+
   .cart-drawer {
     position: fixed;
     top: 0;
@@ -34,8 +42,10 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
-    backdrop-filter: blur(2px);
-    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: opacity var(--menu-transition-duration) var(--menu-transition-timing);
+    z-index: 999;
   }
 
   .cart-drawer.active .cart-drawer-overlay {
@@ -50,10 +60,10 @@
     height: 100%;
     background: white;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform var(--menu-transition-duration) var(--menu-transition-timing);
     display: flex;
     flex-direction: column;
-    z-index: 1;
+    z-index: 1000;
   }
 
   .cart-drawer.active .cart-drawer-container {
@@ -376,11 +386,13 @@
 
     open() {
       this.drawer.classList.add('active');
+      document.body.classList.add('cart-open');
       document.body.style.overflow = 'hidden';
     }
 
     close() {
       this.drawer.classList.remove('active');
+      document.body.classList.remove('cart-open');
       document.body.style.overflow = '';
     }
 

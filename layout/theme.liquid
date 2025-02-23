@@ -247,7 +247,7 @@
         --tracking-normal: 0;
         --tracking-wide: 0.025em;
         --tracking-wider: 0.05em;
-        --tracking-widest: 0.1em;
+        --tracking-widest: 0.2em;
       }
 
       *,
@@ -428,6 +428,15 @@
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
+
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.location.pathname === '/') {
+          const header = document.querySelector('.header-container ');
+          if (header) {
+            header.style.height = '0';
+          }
+        }
+      });
     </script>
 
     {%- if settings.predictive_search_enabled -%}
