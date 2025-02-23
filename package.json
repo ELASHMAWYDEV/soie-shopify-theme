@@ -1,0 +1,13 @@
+{
+    "name": "soie-theme",
+    "version": "1.0.0",
+    "scripts": {
+      "dev": "shopify theme dev",
+      "push": "shopify theme push",
+      "pull": "shopify theme pull",
+      "lint": "theme check"
+    },
+    "devDependencies": {
+      "@shopify/theme-check": "^1.1.0"
+    }
+  }

@@ -8,3 +8,15 @@
 ehthumbs.db
 Thumbs.db
 .shopify
+
+
+# Shopify
+config/settings_data.json
+config.yml
+
+# Node
+node_modules/
+.env
+
+# System
+.DS_Store

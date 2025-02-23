@@ -1,0 +1,289 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+<div class="hero-split">
+  <div class="hero-content">
+    <div class="hero-text-container page-width">
+      <h1 class="hero-title">{{ section.settings.title }}</h1>
+      <p class="hero-subtitle">{{ section.settings.subtitle }}</p>
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="hero-button">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="hero-media">
+    <div class="hero-media-left">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1100
+          | image_tag:
+            loading: 'eager',
+            width: section.settings.image.width,
+            height: section.settings.image.height,
+            class: 'hero-image',
+            sizes: '(min-width: 750px) 50vw, 100vw'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-image placeholder' }}
+      {%- endif -%}
+    </div>
+
+    <div class="hero-media-right">
+      {%- if section.settings.video_url != blank -%}
+        <div class="hero-video-wrapper">
+          <video
+            class="hero-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            defaultMuted
+            webkit-playsinline
+            poster="{{ section.settings.video_cover_image | image_url: width: 1100 }}"
+          >
+            <source src="{{ section.settings.video_url | asset_url }}" type="video/mp4">
+          </video>
+        </div>
+      {%- elsif section.settings.image_right != blank -%}
+        {{
+          section.settings.image_right
+          | image_url: width: 1100
+          | image_tag: loading: 'eager', class: 'hero-image', sizes: '(min-width: 750px) 50vw, 100vw'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'hero-image placeholder' }}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-split {
+    position: relative;
+    height: calc(60vh - var(--header-height));
+    min-height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+  }
+
+  .hero-text-container {
+    text-align: center;
+    color: {{ section.settings.text_color }};
+    max-width: 800px;
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    margin: 0 0 20px;
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-widest);
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    margin: 0 0 32px;
+    font-family: var(--font-lato);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-wide);
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  .hero-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    text-decoration: none;
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-wide);
+    border-radius: 4px;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-button:hover {
+    opacity: 0.9;
+  }
+
+  .hero-media {
+    position: relative;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-media-left,
+  .hero-media-right {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 989px) {
+    .hero-split {
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .hero-content {
+      position: relative;
+      width: 100%;
+      padding: 60px 20px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+    }
+
+    .hero-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .hero-subtitle {
+      font-size: var(--font-size-base);
+    }
+
+    .hero-media {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, minmax(300px, 50vh));
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero Split",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Ethereal New Prints"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Inspired by nature"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Printed Modal Hijabs"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right image"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "Provide a direct link to an MP4 video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_cover_image",
+      "label": "Video cover image",
+      "info": "Shown while video is loading or if video fails"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Split",
+      "settings": {
+        "title": "Ethereal New Prints",
+        "subtitle": "Inspired by nature",
+        "button_text": "Shop Printed Modal Hijabs"
+      }
+    }
+  ]
+}
+{% endschema %}

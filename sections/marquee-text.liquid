@@ -1,0 +1,92 @@
+<div class="marquee-container">
+  <div class="marquee-content">
+    <div class="marquee-text">
+      {{ section.settings.marquee_text }}
+    </div>
+    <div class="marquee-text" aria-hidden="true">
+      {{ section.settings.marquee_text }}
+    </div>
+    <div class="marquee-text" aria-hidden="true">
+      {{ section.settings.marquee_text }}
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background: {{ section.settings.background_color }};
+    padding: 1.5rem 0;
+  }
+
+  .marquee-content {
+    display: flex;
+    animation: marquee {{ section.settings.animation_duration }}s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-text {
+    color: {{ section.settings.text_color }};
+    font-family: var(--font-americana);
+    font-size: var(--font-size-lg);
+    padding: 0 2rem;
+    flex-shrink: 0;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.33%);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .marquee-text {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Marquee Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "marquee_text",
+      "label": "Marquee Text",
+      "default": "embrace the tranquil serenity of nature"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#AB8A7E"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Animation Duration",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Text"
+    }
+  ]
+}
+{% endschema %}

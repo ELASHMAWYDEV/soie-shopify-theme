@@ -220,6 +220,34 @@
         --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
         --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
         --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
+
+        --header-height: {{ settings.header_height | default: 80 }}px;
+        --font-montserrat: 'Montserrat', sans-serif;
+        --font-lato: 'Lato', sans-serif;
+        --font-americana: 'Americana', serif;
+
+        /* Typography Scale */
+        --font-size-xs: 12px;
+        --font-size-sm: 14px;
+        --font-size-base: 16px;
+        --font-size-lg: 18px;
+        --font-size-xl: 24px;
+        --font-size-2xl: 32px;
+        --font-size-3xl: 40px;
+
+        /* Font Weights */
+        --font-light: 300;
+        --font-regular: 400;
+        --font-medium: 500;
+        --font-semibold: 600;
+        --font-bold: 700;
+
+        /* Letter Spacing */
+        --tracking-tight: -0.025em;
+        --tracking-normal: 0;
+        --tracking-wide: 0.025em;
+        --tracking-wider: 0.05em;
+        --tracking-widest: 0.1em;
       }
 
       *,
@@ -240,18 +268,26 @@
         grid-template-columns: 100%;
         min-height: 100%;
         margin: 0;
-        font-size: 1.5rem;
-        letter-spacing: 0.06rem;
-        line-height: calc(1 + 0.8 / var(--font-body-scale));
-        font-family: var(--font-body-family);
+        font-size: var(--font-size-base);
+        letter-spacing: var(--tracking-normal);
+        line-height: 1.5;
+        font-family: var(--font-lato);
         font-style: var(--font-body-style);
-        font-weight: var(--font-body-weight);
+        font-weight: var(--font-regular);
+        color: rgb(var(--color-foreground));
       }
 
       @media screen and (min-width: 750px) {
         body {
           font-size: 1.6rem;
         }
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-montserrat);
+        font-weight: var(--font-medium);
+        letter-spacing: var(--tracking-wide);
+        line-height: 1.2;
       }
     {% endstyle %}
 
@@ -296,6 +332,35 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+      @font-face {
+        font-family: 'Americana';
+        src: url('{{ 'americanabt_roman.ttf' | asset_url }}') format('ttf'),
+             url('{{ 'americanabt_italic.ttf' | asset_url }}') format('ttf'),
+             url('{{ 'americanabt_bold.ttf' | asset_url }}') format('ttf'),
+        font-weight: 400 700;
+        font-style: normal italic;
+        font-display: swap;
+      }
+
+      :root {
+        --font-montserrat: 'Montserrat', sans-serif;
+        --font-lato: 'Lato', sans-serif;
+        --font-americana: 'Americana', serif;
+        --font-cinzel: 'Cinzel', serif;
+      }
+    </style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

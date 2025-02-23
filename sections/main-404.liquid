@@ -1,23 +1,163 @@
-<style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
+<style>
+  .template-404 {
+    padding: 120px 0;
+    text-align: center;
   }
 
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
+  .error-content {
+    margin-bottom: 80px;
+  }
+
+  .error-title {
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-widest);
+    margin-bottom: 20px;
+  }
+
+  .error-text {
+    font-family: var(--font-lato);
+    font-size: var(--font-size-lg);
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 32px;
+  }
+
+  .error-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-wide);
+    border-radius: 4px;
+    transition: opacity 0.3s ease;
+  }
+
+  .error-button:hover {
+    opacity: 0.8;
+  }
+
+  .featured-products {
+    margin-top: 80px;
+  }
+
+  .featured-title {
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-widest);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .product-card {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+
+  .product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-card:hover .product-overlay {
+    background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.6));
+  }
+
+  .product-card:hover .product-image {
+    transform: scale(1.05);
+  }
+
+  .product-title {
+    color: #ffffff;
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-wide);
+    text-align: center;
+    padding: 0 20px;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 989px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .template-404 {
+      padding: 80px 0;
+    }
+
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .error-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .error-text {
+      font-size: var(--font-size-base);
     }
   }
 </style>
 
-<div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+<div class="template-404">
+  <div class="error-content">
+    <h1 class="error-title">{{ 'templates.404.title' | t }}</h1>
+    <p class="error-text">{{ 'templates.404.subtext' | t }}</p>
+    <a href="{{ routes.all_products_collection_url }}" class="error-button">
+      {{ 'general.continue_shopping' | t }}
+    </a>
+  </div>
+
+  <div class="featured-products">
+    <h2 class="featured-title">Looking for something?</h2>
+    <div class="products-grid">
+      {% for product in collections.all.products limit: 6 %}
+        <a href="{{ product.url }}" class="product-card">
+          {{
+            product.featured_image
+            | image_url: width: 600
+            | image_tag: loading: 'lazy', class: 'product-image', widths: '300, 400, 500, 600'
+          }}
+          <div class="product-overlay">
+            <h3 class="product-title">{{ product.title }}</h3>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
 </div>

@@ -1,0 +1,197 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-grid">
+  <div class="collection-grid__wrapper page-width">
+    <div class="collection-grid__items">
+      {%- for block in section.blocks -%}
+        <div class="collection-grid__item" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.collection.url }}" class="collection-grid__link">
+            <div class="collection-grid__media">
+              {%- if block.settings.collection.image != blank -%}
+                {{
+                  block.settings.collection.image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'collection-grid__image',
+                    widths: '400, 600, 800',
+                    sizes: '(min-width: 750px) 50vw, 100vw'
+                }}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'collection-grid__image placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="collection-grid__content">
+              <h3 class="collection-grid__title">{{ block.settings.title | escape }}</h3>
+              {%- if block.settings.subtitle != blank -%}
+                <p class="collection-grid__subtitle">{{ block.settings.subtitle | escape }}</p>
+              {%- endif -%}
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .collection-grid {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+  }
+
+  .collection-grid__wrapper {
+    padding: 0;
+  }
+
+  .collection-grid__items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .collection-grid__item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .collection-grid__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .collection-grid__media {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+  }
+
+  .collection-grid__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+
+  .collection-grid__link:hover .collection-grid__image {
+    transform: scale(1.05);
+  }
+
+  .collection-grid__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .collection-grid__title {
+    margin: 0;
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-widest);
+  }
+
+  .collection-grid__subtitle {
+    margin: 8px 0 0;
+    font-family: var(--font-lato);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-wide);
+    opacity: 0.9;
+  }
+
+  @media screen and (max-width: 989px) {
+    .collection-grid__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collection-grid__content {
+      padding: 20px;
+    }
+
+    .collection-grid__title {
+      font-size: var(--font-size-lg);
+    }
+
+    .collection-grid__subtitle {
+      font-size: var(--font-size-sm);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Collection subtitle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Grid",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Golden Sands",
+            "subtitle": "Discover our latest collection"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Dune Sands",
+            "subtitle": "Explore timeless pieces"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Twilight",
+            "subtitle": "Evening elegance"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Earth Woven",
+            "subtitle": "Natural beauty"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,210 +1,135 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+    "hero": {
+      "type": "hero-split",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "title": "Ethereal New Prints",
+        "subtitle": "Inspired by nature",
+        "button_text": "Shop Printed Modal Hijabs",
+        "button_link": "/collections/printed-hijabs",
+        "text_color": "#FFFFFF",
+        "button_background": "#FFFFFF",
+        "button_text_color": "#000000"
       }
     },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+    "marquee": {
+      "type": "marquee-text",
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
+        "marquee_text": "embrace the tranquil serenity of nature",
+        "background_color": "#B8A69A",
+        "text_color": "#FFFFFF",
+        "animation_duration": 30
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 28,
-        "padding_bottom": 36
-      }
-    },
-    "collage": {
-      "type": "collage",
+    "collection-grid": {
+      "type": "collection-grid",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "product": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "second_image": false
-          }
-        },
         "collection-1": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "title": "Golden Sands",
+            "subtitle": "Discover our latest collection"
+          }
+        },
+        "collection-2": {
+          "type": "collection",
+          "settings": {
+            "title": "Dune Sands",
+            "subtitle": "Explore timeless pieces"
+          }
+        },
+        "collection-3": {
+          "type": "collection",
+          "settings": {
+            "title": "Twilight",
+            "subtitle": "Evening elegance"
+          }
+        },
+        "collection-4": {
+          "type": "collection",
+          "settings": {
+            "title": "Earth Woven",
+            "subtitle": "Natural beauty"
           }
         }
       },
-      "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
-      ],
-      "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "block_order": ["collection-1", "collection-2", "collection-3", "collection-4"]
     },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
+    "category-links": {
+      "type": "category-links",
       "blocks": {
-        "column1": {
-          "type": "column",
+        "category-1": {
+          "type": "category",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Dresses",
+            "subtitle": "SHOP DRESSES",
+            "link": "/collections/dresses"
           }
         },
-        "column2": {
-          "type": "column",
+        "category-2": {
+          "type": "category",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Hijabs",
+            "subtitle": "SHOP HIJABS",
+            "link": "/collections/hijabs"
           }
         },
-        "column3": {
-          "type": "column",
+        "category-3": {
+          "type": "category",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Co-Ords",
+            "subtitle": "SHOP CO-ORDS",
+            "link": "/collections/co-ords"
           }
         }
       },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
+      "block_order": ["category-1", "category-2", "category-3"]
+    },
+    "as-seen-on": {
+      "type": "as-seen-on",
+      "blocks": {
+        "social-1": { "type": "image" },
+        "social-2": { "type": "image" },
+        "social-3": { "type": "image" },
+        "social-4": { "type": "image" },
+        "social-5": { "type": "image" }
+      },
+      "block_order": ["social-1", "social-2", "social-3", "social-4", "social-5"],
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "As Seen On",
+        "autoplay": true
+      }
+    },
+    "who-we-are": {
+      "type": "who-we-are",
+      "blocks": {
+        "column-1": {
+          "type": "column",
+          "settings": {
+            "title": "Our Commitment",
+            "text": "<p>Share your brand's unique story and values with your customers.</p>"
+          }
+        },
+        "column-2": {
+          "type": "column",
+          "settings": {
+            "title": "Our Mission",
+            "text": "<p>Highlight what makes your brand special and why customers should choose you.</p>"
+          }
+        },
+        "column-3": {
+          "type": "column",
+          "settings": {
+            "title": "For the Community",
+            "text": "<p>Describe how your brand contributes to and supports your community.</p>"
+          }
+        }
+      },
+      "block_order": ["column-1", "column-2", "column-3"],
+      "settings": {
+        "heading": "Who We Are"
       }
     }
   },
-  "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
-  ]
+  "order": ["hero", "marquee", "collection-grid", "category-links", "as-seen-on", "who-we-are"]
 }

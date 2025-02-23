@@ -1,0 +1,9 @@
+development:
+  password: 123456
+  theme_id: SOIE-THEME
+  store: 8c6f96-45.myshopify.com
+
+production:
+  password: 123456
+  theme_id: SOIE-THEME
+  store: 8c6f96-45.myshopify.com

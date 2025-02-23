@@ -152,10 +152,10 @@
       {
         "type": "range",
         "id": "page_width",
-        "min": 1000,
-        "max": 1600,
-        "step": 100,
-        "default": 1200,
+        "min": 600,
+        "max": 1800,
+        "step": 60,
+        "default": 1800,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.page_width.label"
       },
@@ -1449,6 +1449,67 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      }
+    ]
+  },
+  {
+    "name": "Side Menu",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Menu Animation"
+      },
+      {
+        "type": "range",
+        "id": "menu_transition_duration",
+        "min": 0.2,
+        "max": 1.0,
+        "step": 0.1,
+        "unit": "s",
+        "label": "Animation Duration",
+        "default": 0.3
+      },
+      {
+        "type": "select",
+        "id": "menu_transition_timing",
+        "label": "Animation Style",
+        "options": [
+          {
+            "value": "ease",
+            "label": "Smooth"
+          },
+          {
+            "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+            "label": "Material"
+          },
+          {
+            "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+            "label": "Spring"
+          }
+        ],
+        "default": "cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "menu_text_color",
+        "label": "Menu Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "submenu_text_color",
+        "label": "Submenu Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "submenu_background",
+        "label": "Submenu Background",
+        "default": "#000000"
       }
     ]
   }

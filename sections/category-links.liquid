@@ -1,0 +1,198 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+<div class="category-links">
+  <div class="category-links__wrapper page-width">
+    <div class="category-links__grid">
+      {%- for block in section.blocks -%}
+        <div class="category-links__item" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link }}" class="category-links__link">
+            <div class="category-links__media">
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'category-links__image',
+                    widths: '400, 600, 800',
+                    sizes: '(min-width: 750px) 33vw, 100vw'
+                }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'category-links__image placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="category-links__content">
+              <h3 class="category-links__title">{{ block.settings.title | escape }}</h3>
+              {%- if block.settings.subtitle != blank -%}
+                <p class="category-links__subtitle">{{ block.settings.subtitle | escape }}</p>
+              {%- endif -%}
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .category-links {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+  }
+
+  .category-links__wrapper {
+    padding: 0;
+  }
+
+  .category-links__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .category-links__item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .category-links__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .category-links__media {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 150%;
+  }
+
+  .category-links__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+
+  .category-links__link:hover .category-links__image {
+    transform: scale(1.05);
+  }
+
+  .category-links__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .category-links__title {
+    margin: 0;
+    font-family: var(--font-montserrat);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+  }
+
+  .category-links__subtitle {
+    margin: 8px 0 0;
+    font-family: var(--font-lato);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-light);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  @media screen and (max-width: 989px) {
+    .category-links__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .category-links__media {
+      padding-bottom: 100%;
+    }
+
+    .category-links__content {
+      padding: 20px;
+    }
+
+    .category-links__title {
+      font-size: var(--font-size-lg);
+    }
+
+    .category-links__subtitle {
+      font-size: var(--font-size-sm);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Category Links",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Category subtitle"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Links",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Dresses",
+            "subtitle": "SHOP DRESSES"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Hijabs",
+            "subtitle": "SHOP HIJABS"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Co-Ords",
+            "subtitle": "SHOP CO-ORDS"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
