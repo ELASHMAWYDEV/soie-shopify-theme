@@ -1,7 +1,7 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 <div class="as-seen-on">
-  <div class="as-seen-on__wrapper page-width">
+  <div class="as-seen-on__wrapper">
     <h2 class="as-seen-on__heading">{{ section.settings.heading }}</h2>
 
     <div class="as-seen-on__slider" data-autoplay="{{ section.settings.autoplay }}">
@@ -53,13 +53,16 @@
   .as-seen-on__slider {
     position: relative;
     overflow: hidden;
+    width: 100%;
   }
 
   .as-seen-on__track {
     display: flex;
     gap: 30px;
     flex-wrap: nowrap;
-    animation: scroll 30s linear infinite;
+    width: max-content; /* Ensure it can hold all items */
+    animation: scroll 25s linear infinite;
+    will-change: transform;
   }
 
   @keyframes scroll {
@@ -67,7 +70,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(calc(-50% - 15px)); /* Half width plus half gap */
     }
   }
 
@@ -119,6 +122,28 @@
       width: 150px;
     }
   }
+
+  @media screen and (max-width: 749px) {
+    .as-seen-on .page-width {
+      padding-left: 0;
+      padding-right: 0;
+      max-width: 100%;
+    }
+
+    .as-seen-on {
+      margin: 30px 0;
+      padding: 30px 0;
+    }
+
+    .as-seen-on__slider {
+      width: 100%;
+      overflow-x: visible;
+    }
+
+    .as-seen-on__item {
+      width: 140px;
+    }
+  }
 </style>
 
 <script>
@@ -134,9 +159,18 @@
     }
 
     init() {
-      // Clone items for infinite scroll effect
-      const itemsToClone = Array.from(this.items).map((item) => item.cloneNode(true));
-      itemsToClone.forEach((item) => this.track.appendChild(item));
+      // Clone all items exactly once for a seamless loop
+      Array.from(this.items).forEach((item) => {
+        const clone = item.cloneNode(true);
+        this.track.appendChild(clone);
+      });
+
+      // Check if we need to adjust animation speed based on number of items
+      if (this.items.length < 4) {
+        this.track.style.animationDuration = '15s';
+      } else if (this.items.length > 8) {
+        this.track.style.animationDuration = '35s';
+      }
     }
   }
 

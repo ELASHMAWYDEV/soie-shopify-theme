@@ -69,8 +69,8 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Care Instructions",
-            "icon": "heart",
-            "content": "",
+            "icon": "iron",
+            "content": "<p><strong>For best results</strong></p><p><br/>Hand wash separately in cold water to maintain the fabric's quality and color.</p><p>Dry cleaning is highly recommended to extend the lifespan of the fabric.</p><p>Avoid using traditional pins; instead, we recommend magnet pins or hijab tape to prevent damage.</p><p><strong>Please be aware that the color of the hijab may vary depending on the lighting conditions.</strong></p>",
             "page": ""
           }
         },
@@ -117,7 +117,7 @@
           "type": "column",
           "settings": {
             "title": "Free Shipping",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>Enjoy free shipping on orders over 50 JD.</p>",
             "link_label": "",
             "link": ""
           }
@@ -125,8 +125,8 @@
         "column-1": {
           "type": "column",
           "settings": {
-            "title": "Hassle-Free Exchanges",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Free Exchanges",
+            "text": "<p>Within 48 Hour you can exchange your order<br/></p>",
             "link_label": "",
             "link": ""
           }

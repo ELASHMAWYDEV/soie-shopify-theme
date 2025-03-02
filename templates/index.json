@@ -39,7 +39,7 @@
       "settings": {
         "title": "Featured Colors",
         "collection": "modal-hijab",
-        "padding_top": 0,
+        "padding_top": 4,
         "padding_bottom": 0
       }
     },
@@ -126,44 +126,34 @@
         "autoplay": true
       }
     },
-    "who-we-are": {
-      "type": "who-we-are",
+    "rich_text_49R6ET": {
+      "type": "rich-text",
       "blocks": {
-        "column-1": {
-          "type": "column",
+        "heading_FifKJf": {
+          "type": "heading",
           "settings": {
-            "title": "Our Commitment",
-            "text": "<p>Share your brand's unique story and values with your customers.</p>",
-            "button_text": "",
-            "button_link": ""
+            "heading": "What is Soie?",
+            "heading_size": "h1"
           }
         },
-        "column-2": {
-          "type": "column",
+        "text_cHP8Ac": {
+          "type": "text",
           "settings": {
-            "title": "Our Mission",
-            "text": "<p>Highlight what makes your brand special and why customers should choose you.</p>",
-            "button_text": "",
-            "button_link": ""
-          }
-        },
-        "column-3": {
-          "type": "column",
-          "settings": {
-            "title": "For the Community",
-            "text": "<p>Describe how your brand contributes to and supports your community.</p>",
-            "button_text": "",
-            "button_link": ""
+            "text": "<p>We pride ourselves on being one of the first in the country to offer high-quality hijabs.</p><p> Our products are sourced from Turkey and Egypt, known for their premium fabrics and craftsmanship. </p><p>As a family-owned business, we are dedicated to growing our mission of providing stylish and comfortable hijabs to women around the world, available in boutiques everywhere.</p><p>We are passionate about empowering new hijabi girls to express their unique style with confidence, while also encouraging them to embrace their faith. Soon, </p><p>we will be expanding our offerings to include abayas, furthering our commitment to providing fashionable, modest clothing for women everywhere.</p>"
           }
         }
       },
       "block_order": [
-        "column-1",
-        "column-2",
-        "column-3"
+        "heading_FifKJf",
+        "text_cHP8Ac"
       ],
       "settings": {
-        "heading": "Who We Are"
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
@@ -172,6 +162,6 @@
     "marquee",
     "featured_products_Cnp9bi",
     "as-seen-on",
-    "who-we-are"
+    "rich_text_49R6ET"
   ]
 }
